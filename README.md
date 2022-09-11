@@ -4,8 +4,8 @@
 
 ### Student Info
 
--   Name: YOUR NAME
--   Section: ##
+-   Name: Sam Peterson
+-   Section: 05
 
 ## Game Design
 
