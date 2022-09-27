@@ -1,4 +1,4 @@
-# Project PROJECT_NAME
+# Project Name: DREADNOUGHT
 
 [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet)
 
@@ -9,33 +9,35 @@
 
 ## Game Design
 
--   Camera Orientation: _How are the art assets viewed from? (ie. topdown or side)_
--   Camera Movement: _How does the camera move in your game? (if at all)_
--   Player Health: _How are you handling player health? (healthbar, lives, ?)_
--   End Condition: _How does a game/round/level end?_
--   Scoring: _How does the player earn points in your game?_
+-   Camera Orientation: Side (I want to do topdown, but I still need to figure out how to fix camera orientation in Unity WebGL)
+-   Camera Movement: No Camera Movement
+-   Player Health: Healthbar
+-   End Condition: The game ends when the player runs out of health or defeats the Dreadnought by bringing its health to 0.
+-   Scoring: Scoring is determined by how much damage you deal to the Dreadnought before the player runs out of health & how much time it took.
 
 ### Game Description
 
-_A brief explanation of your game. Inculde what is the objective for the player. Think about what would go on the back of a game box._
+Dreadnought: A shoot-em-up game against one singular enemy vessel and its fleet: the Dreadnought, an ultra-powerful ship that must be defeated by your smaller and weaker fighter.
 
 ### Controls
 
 -   Movement
-    -   Up: 
-    -   Down: 
-    -   Left: 
-    -   Right: 
--   Fire: 
+    -   Up: W / Up Arrow
+    -   Down: S / Down Arrow
+    -   Left: A / Left Arrow
+    -   Right: D / Right Arrow
+-   Fire: Right Mouse Button
 
 ## You Additions
 
-_List out what you added to your game to make it different for you_
+This game is different for me in that it will have one primary enemy with different abilities on different cooldowns, such as its normal bullets, its more powerful laser attack, and sending out smaller, weaker fighters to fight the player ship.
 
 ## Sources
 
--   _List all project sources here –models, textures, sound clips, assets, etc._
--   _If an asset is from the Unity store, include a link to the page and the author’s name_
+- Player Ship: https://opengameart.org/content/spaceship-fighter-ipod1
+- Dreadnought: https://opengameart.org/content/spaceship-spiked-fighter
+- Dreadnought Laser: https://opengameart.org/content/laser-effect-sheet
+- Game Bullets: https://opengameart.org/content/sci-fi-space-simple-bullets
 
 ## Known Issues
 
