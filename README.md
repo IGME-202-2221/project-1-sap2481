@@ -35,7 +35,7 @@ This game is different for me in that it will have only one enemy with multiple 
 ## Sources
 
 - Player Ship: https://opengameart.org/content/spaceship-fighter-ipod1
-- Dreadnought: https://opengameart.org/content/spaceship-boss
+- Dreadnought: https://opengameart.org/content/spaceship-spiked-fighter
 
 ## Known Issues
 
