@@ -56,15 +56,16 @@ public class Vehicle : MonoBehaviour
         //Draw vehicle at that position
         transform.position = vehiclePosition;
 
-        //Wrap Vehicle Around Camera
-        if (vehiclePosition.x > width / 2)
+        //Don't Allow Wrap Over X
+        if (vehiclePosition.x > 10)
         {
-            vehiclePosition.x = -(width / 2);
+            vehiclePosition.x = 10;
         }
-        if (vehiclePosition.x < -(width / 2))
+        if (vehiclePosition.x < -10)
         {
-            vehiclePosition.x = (width / 2);
+            vehiclePosition.x = -10;
         }
+        //Allow Wrap Over Y
         if (vehiclePosition.y > (height / 2))
         {
             vehiclePosition.y = -(height / 2);
@@ -75,10 +76,10 @@ public class Vehicle : MonoBehaviour
         } 
     }
 
-    public void OnMove(InputAction.CallbackContext context)
+    public void OnMove(InputAction.CallbackContext context) //I don't need this element of OnMove, as I want the ship to consistently face the same direction
     {
         direction = context.ReadValue<Vector2>();
 
-        transform.rotation = Quaternion.LookRotation(Vector3.back, direction);
+        //transform.rotation = Quaternion.LookRotation(Vector3.back, direction);
     }
 }
