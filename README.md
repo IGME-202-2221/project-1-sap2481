@@ -17,7 +17,7 @@
 
 ### Game Description
 
-Dreadnought: A shoot-em-up game against one singular enemy vessel: the Dreadnought, an ultra-powerful ship that must be defeated by your smaller and weaker fighter.
+Dreadnought: A shoot-em-up game against one singular enemy vessel and its fleet: the Dreadnought, an ultra-powerful ship that must be defeated by your smaller and weaker fighter.
 
 ### Controls
 
@@ -30,7 +30,7 @@ Dreadnought: A shoot-em-up game against one singular enemy vessel: the Dreadnoug
 
 ## You Additions
 
-This game is different for me in that it will have only one enemy with multiple weapon types to use against the player, with weapon recharges & time-in-effect differing depending on the weapon's power. 
+This game is different for me in that it will have one primary enemy with different abilities on different cooldowns, such as its normal bullets, its more powerful laser attack, and sending out smaller, weaker fighters to fight the player ship.
 
 ## Sources
 
