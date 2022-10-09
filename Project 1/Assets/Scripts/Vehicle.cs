@@ -5,6 +5,11 @@ using UnityEngine.InputSystem;
 
 public class Vehicle : MonoBehaviour
 {
+    public void Shoot()
+    {
+        Instantiate(bulletPrefab, transform.position, transform.rotation);
+    }
+    
     [SerializeField]
     float speed = 5f;
 
@@ -28,6 +33,9 @@ public class Vehicle : MonoBehaviour
 
     [SerializeField, HideInInspector]
     float width;
+
+    [SerializeField]
+    public GameObject bulletPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -57,13 +65,13 @@ public class Vehicle : MonoBehaviour
         transform.position = vehiclePosition;
 
         //Don't Allow Wrap Over X
-        if (vehiclePosition.x > 10)
+        if (vehiclePosition.x > (width / 2))
         {
-            vehiclePosition.x = 10;
+            vehiclePosition.x = width / 2;
         }
-        if (vehiclePosition.x < -10)
+        if (vehiclePosition.x < -(width / 2))
         {
-            vehiclePosition.x = -10;
+            vehiclePosition.x = -(width / 2);
         }
         //Allow Wrap Over Y
         if (vehiclePosition.y > (height / 2))
@@ -74,6 +82,11 @@ public class Vehicle : MonoBehaviour
         {
             vehiclePosition.y = (height / 2);
         } 
+
+        if (Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            Shoot();
+        }
     }
 
     public void OnMove(InputAction.CallbackContext context) //I don't need this element of OnMove, as I want the ship to consistently face the same direction

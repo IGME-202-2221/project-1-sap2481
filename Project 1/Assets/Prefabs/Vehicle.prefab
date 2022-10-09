@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5814515316525740199}
   m_Layer: 0
   m_Name: Vehicle
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,6 +106,7 @@ MonoBehaviour:
   cam: {fileID: 0}
   height: 0
   width: 0
+  bulletPrefab: {fileID: 6545625888879047969, guid: ac551b3e940b36a4b909343fd1e55912, type: 3}
 --- !u!114 &5814515316525740199
 MonoBehaviour:
   m_ObjectHideFlags: 0
