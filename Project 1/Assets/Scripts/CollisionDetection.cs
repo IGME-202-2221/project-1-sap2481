@@ -14,6 +14,7 @@ public class CollisionDetection : MonoBehaviour
         {
             isColliding = true;
             vehicle.GetComponent<SpriteRenderer>().color = Color.red;
+            //NOTE: I know why the red coloration on collision for the dreadnought is broken. I just haven't been able to figure out how to fix it yet. Stay tuned.
             if (obstacle.tag == "EnemyBullet" || obstacle.tag == "PlayerBullet")
             {
                 Destroy(obstacle);
