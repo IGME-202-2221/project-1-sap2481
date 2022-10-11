@@ -9,7 +9,7 @@
 
 ## Game Design
 
--   Camera Orientation: Side (I want to do topdown, but I still need to figure out how to fix camera orientation in Unity WebGL)
+-   Camera Orientation: Side
 -   Camera Movement: No Camera Movement
 -   Player Health: Healthbar
 -   End Condition: The game ends when the player runs out of health or defeats the Dreadnought by bringing its health to 0.
@@ -36,6 +36,7 @@ This game is different for me in that it will have one primary enemy with differ
 
 - Player Ship: https://opengameart.org/content/spaceship-fighter-ipod1
 - Dreadnought: https://opengameart.org/content/spaceship-spiked-fighter
+- Enemy Fighter: https://opengameart.org/content/spaceship-fighter
 - Dreadnought Laser: https://opengameart.org/content/laser-effect-sheet
 - Game Bullets: https://opengameart.org/content/sci-fi-space-simple-bullets
 
