@@ -298,7 +298,9 @@ MonoBehaviour:
   direction: {x: -0.5, y: 0, z: 0}
   velocity: {x: -1, y: 0, z: 0}
   bulletPrefab: {fileID: 5906590343070761772, guid: 835c59e2c86c1694c8e75137e1fd344c, type: 3}
+  enemyPrefab: {fileID: 8683076053352664796, guid: 8c06c0d2b72d19f419d18554af092ace, type: 3}
   frameCount: 0
+  launchLoop: 0
 --- !u!61 &724100195
 BoxCollider2D:
   m_ObjectHideFlags: 0

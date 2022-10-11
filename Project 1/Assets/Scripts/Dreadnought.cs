@@ -8,11 +8,23 @@ public class Dreadnought : MonoBehaviour
     {
         if (altFire == true)
         {
-            Instantiate(bulletPrefab, new Vector3(transform.position.x, transform.position.y + 3, transform.position.z), transform.rotation);
+            Instantiate(bulletPrefab, new Vector3(transform.position.x - 2.5f, transform.position.y + 2.5f, transform.position.z), transform.rotation);
         }
         else
         {
-            Instantiate(bulletPrefab, new Vector3(transform.position.x, transform.position.y - 3, transform.position.z), transform.rotation);
+            Instantiate(bulletPrefab, new Vector3(transform.position.x - 2.5f, transform.position.y - 2.5f, transform.position.z), transform.rotation);
+        }
+    }
+
+    public void Launch(bool altLaunch)
+    {
+        if (altLaunch == true)
+        {
+            Instantiate(enemyPrefab, new Vector3(transform.position.x - 2.5f, transform.position.y + 3, transform.position.z), transform.rotation);
+        }
+        else
+        {
+            Instantiate(enemyPrefab, new Vector3(transform.position.x - 2.5f, transform.position.y - 3, transform.position.z), transform.rotation);
         }
     }
 
@@ -32,16 +44,21 @@ public class Dreadnought : MonoBehaviour
     public GameObject bulletPrefab;
 
     [SerializeField]
+    GameObject enemyPrefab;
+
     public int frameCount;
+    public int launchLoop;
 
     bool altFire;
+    bool altLaunch;
 
     // Start is called before the first frame update
     void Start()
     {
         enemyPosition = transform.position;
-        frameCount = 25; //NOTE: Build runs much slower than Unity gametest. When on Unity, frameCount is better at 1000. For the Build, set it to 25.
+        frameCount = 1000; //NOTE: Build runs much slower than Unity gametest. When on Unity, frameCount is better at 1000. For the Build, set it to 25.
         //This is until I can figure out a better timing method
+        launchLoop = 0;
         altFire = false;
     }
 
@@ -65,8 +82,17 @@ public class Dreadnought : MonoBehaviour
         if (frameCount == 0)
         {
             Shoot(altFire);
-            frameCount = 25;
+            frameCount = 1000; //Once again, set this to 1000 on Unity and 25 for the build
             altFire = !altFire;
+            launchLoop++;
+        }
+
+        //Launch
+        if (launchLoop == 8)
+        {
+            Launch(altLaunch);
+            launchLoop = 0;
+            altLaunch = !altLaunch;
         }
     }
 }
