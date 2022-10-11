@@ -9,7 +9,7 @@
 
 ## Game Design
 
--   Camera Orientation: Side (I want to do topdown, but I still need to figure out how to fix camera orientation in Unity WebGL)
+-   Camera Orientation: Side
 -   Camera Movement: No Camera Movement
 -   Player Health: Healthbar
 -   End Condition: The game ends when the player runs out of health or defeats the Dreadnought by bringing its health to 0.
