@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class EnemyShip : MonoBehaviour
 {
+    
     [SerializeField]
-    float speed = 3f;
+    float speed = 7f;
 
     [SerializeField]
     Vector3 shipPosition = Vector3.zero;
@@ -40,5 +41,12 @@ public class EnemyShip : MonoBehaviour
 
         //Draw vehicle at that position
         transform.position = shipPosition;
+
+        //Rotate towards player
+        var offset = -90f;
+        Vector2 newDirection = target.transform.position - transform.position;
+        newDirection.Normalize();
+        float angle = Mathf.Atan2(newDirection.y, newDirection.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(Vector3.forward * (angle + offset));
     }
 }

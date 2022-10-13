@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBullet : MonoBehaviour
+public class Laser : MonoBehaviour
 {
     [SerializeField]
-    float speed = 15f;
+    float speed = -20f;
 
     [SerializeField]
-    Vector3 bulletPosition = Vector3.zero;
+    Vector3 laserPosition = Vector3.zero;
 
     [SerializeField]
     Vector3 direction = Vector3.left;
@@ -24,7 +24,7 @@ public class EnemyBullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        bulletPosition = transform.position;
+        laserPosition = transform.position;
         target = GameObject.FindGameObjectWithTag("Player");
         transform.eulerAngles = new Vector3(0, 0, 0);
 
@@ -33,7 +33,7 @@ public class EnemyBullet : MonoBehaviour
         velocityY = (target.transform.position.y - transform.position.y) * Time.deltaTime;
 
         //Rotate Bullet
-        var offset = 0f;
+        var offset = 90f;
         Vector2 newDirection = target.transform.position - transform.position;
         newDirection.Normalize();
         float angle = Mathf.Atan2(newDirection.y, newDirection.x) * Mathf.Rad2Deg;
@@ -42,15 +42,15 @@ public class EnemyBullet : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {    
+    {
         //Make sure direction is normalized
         direction.Normalize();
 
         //Add velocity to position
-        bulletPosition.x += velocityX;
-        bulletPosition.y += velocityY;
+        laserPosition.x += velocityX;
+        laserPosition.y += velocityY;
 
         //Draw vehicle at that position
-        transform.position = bulletPosition;
+        transform.position = laserPosition;
     }
 }

@@ -15,7 +15,11 @@ public class CollisionDetection : MonoBehaviour
             isColliding = true;
             vehicle.GetComponent<SpriteRenderer>().color = Color.red;
             //NOTE: I know why the red coloration on collision for the dreadnought is broken. I just haven't been able to figure out how to fix it yet. Stay tuned.
-            if (obstacle.tag == "EnemyBullet" || obstacle.tag == "PlayerBullet")
+            if (vehicle.tag == "EnemyShip")
+            {
+                Destroy(vehicle);
+            }
+            if (obstacle.tag == "EnemyBullet" || obstacle.tag == "PlayerBullet" || obstacle.tag == "EnemyShip")
             {
                 Destroy(obstacle);
             }
@@ -37,6 +41,8 @@ public class CollisionDetection : MonoBehaviour
     GameObject enemy;
     List<GameObject> enemyBulletList;
     List<GameObject> playerBulletList;
+    List<GameObject> enemyShipList;
+    List<GameObject> laserList;
 
     [SerializeField]
     Camera cam;
@@ -54,6 +60,8 @@ public class CollisionDetection : MonoBehaviour
         dreadnought = GameObject.Find("Dreadnought");
         playerBulletList = new List<GameObject>();
         enemyBulletList = new List<GameObject>();
+        enemyShipList = new List<GameObject>();
+        laserList = new List<GameObject>();
 
         height = 2f * cam.orthographicSize;
         width = height * cam.aspect;
@@ -79,6 +87,22 @@ public class CollisionDetection : MonoBehaviour
             enemyBulletList.Add(enemyBulletFind[i]);
         }
 
+        //Enemy Ships
+        enemyShipList.Clear();
+        GameObject[] enemyShipFind = GameObject.FindGameObjectsWithTag("EnemyShip");
+        for (int i = 0; i < enemyShipFind.Length; i++)
+        {
+            enemyShipList.Add(enemyShipFind[i]);
+        }
+
+        //Lasers
+        laserList.Clear();
+        GameObject[] laserFind = GameObject.FindGameObjectsWithTag("Laser");
+        for (int i = 0; i < laserFind.Length; i++)
+        {
+            laserList.Add(laserFind[i]);
+        }
+
         //Check for Enemy Bullet Collisions
         for (int i = 0; i < enemyBulletList.Count; i++)
         {
@@ -97,6 +121,27 @@ public class CollisionDetection : MonoBehaviour
             }
         }
 
+        //Check for Enemy Ship Collisions - Player vs Enemy
+        for (int i = 0; i < enemyShipList.Count; i++)
+        {
+            if (Collision(player, enemyShipList[i]))
+            {
+                break;
+            }
+        }
+
+        //Check for Enemy Ship Collisions - Enemy vs Player Bullet
+        for (int i = 0; i < enemyShipList.Count; i++)
+        {
+            for (int j = 0; j < playerBulletList.Count; j++)
+            {
+                if (Collision(enemyShipList[i], playerBulletList[j]))
+                {
+                    break;
+                }
+            }
+        }
+
         //Check for Ship-To-Ship Collision
         Collision(player, dreadnought);
 
@@ -107,6 +152,16 @@ public class CollisionDetection : MonoBehaviour
                 || enemyBulletList[i].transform.position.x < -(width / 2))
             {
                 Destroy(enemyBulletList[i]);
+            }
+        }
+
+        //Remove Lasers If Outside the Screen
+        for (int i = 0; i < laserList.Count; i++)
+        {
+            if (laserList[i].transform.position.y > height / 2 || laserList[i].transform.position.y < -(height / 2)
+                || laserList[i].transform.position.x < -(width / 2))
+            {
+                Destroy(laserList[i]);
             }
         }
     }

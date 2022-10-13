@@ -28,6 +28,11 @@ public class Dreadnought : MonoBehaviour
         }
     }
 
+    public void Laser()
+    {
+        Instantiate(laserPrefab, transform.position, transform.rotation);
+    }
+
     [SerializeField]
     float speed = 0.15f;
 
@@ -46,8 +51,14 @@ public class Dreadnought : MonoBehaviour
     [SerializeField]
     GameObject enemyPrefab;
 
+    [SerializeField]
+    GameObject laserPrefab;
+
     public int frameCount;
     public int launchLoop;
+
+    public int laserCountdown;
+    public int laserLoop;
 
     bool altFire;
     bool altLaunch;
@@ -60,6 +71,9 @@ public class Dreadnought : MonoBehaviour
         //This is until I can figure out a better timing method
         launchLoop = 0;
         altFire = false;
+
+        laserCountdown = 10000;
+        laserLoop = 50;
     }
 
     // Update is called once per frame
@@ -93,6 +107,23 @@ public class Dreadnought : MonoBehaviour
             Launch(altLaunch);
             launchLoop = 0;
             altLaunch = !altLaunch;
+        }
+
+        //Laser
+        laserCountdown--;
+        if (laserCountdown <= 0)
+        {
+            if (laserLoop % 5 == 0)
+            {
+                Laser();
+            }
+            laserLoop--;
+
+            if (laserLoop == 0)
+            {
+                laserCountdown = 10000;
+                laserLoop = 50;
+            }
         }
     }
 }

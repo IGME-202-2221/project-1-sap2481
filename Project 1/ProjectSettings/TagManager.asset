@@ -6,6 +6,8 @@ TagManager:
   tags:
   - PlayerBullet
   - EnemyBullet
+  - EnemyShip
+  - Laser
   layers:
   - Default
   - TransparentFX
