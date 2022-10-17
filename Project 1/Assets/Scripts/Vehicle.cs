@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class Vehicle : MonoBehaviour
 {
+
     public void Shoot()
     {
         Instantiate(bulletPrefab, transform.position, transform.rotation);
@@ -54,7 +55,7 @@ public class Vehicle : MonoBehaviour
 
         //Turn the vehicle by some angle
         direction = Quaternion.EulerAngles(0, 0, turnAmount * Time.deltaTime) * direction;
-        
+
         //Calculate velocity
         velocity = direction * speed * Time.deltaTime;
 
@@ -81,18 +82,18 @@ public class Vehicle : MonoBehaviour
         if (vehiclePosition.y < -(height / 2))
         {
             vehiclePosition.y = (height / 2);
-        } 
+        }
 
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        if (Time.timeScale != 0)
         {
-            Shoot();
+            if (Mouse.current.leftButton.wasPressedThisFrame)
+            {
+                Shoot();
+            }
         }
     }
-
-    public void OnMove(InputAction.CallbackContext context) //I don't need this element of OnMove, as I want the ship to consistently face the same direction
+    public void OnMove(InputAction.CallbackContext context)
     {
         direction = context.ReadValue<Vector2>();
-
-        //transform.rotation = Quaternion.LookRotation(Vector3.back, direction);
     }
 }

@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class EnemyShip : MonoBehaviour
 {
-    
+    public void EnemyDamage()
+    {
+        health--;
+        if (health == 0)
+        {
+            SendMessageUpwards("ShipDestroyed");
+            Destroy(gameObject);
+        }
+    }
+
     [SerializeField]
-    float speed = 7f;
+    float speed = 8f;
 
     [SerializeField]
     Vector3 shipPosition = Vector3.zero;
@@ -18,6 +27,7 @@ public class EnemyShip : MonoBehaviour
     Vector3 velocity = Vector3.left;
 
     GameObject target;
+    int health;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +35,8 @@ public class EnemyShip : MonoBehaviour
         shipPosition = transform.position;
         target = GameObject.FindGameObjectWithTag("Player");
         transform.eulerAngles = new Vector3(0, 0, 90);
+        transform.localScale = new Vector3(0.075f, 0.075f, 0.075f);
+        health = 3;
     }
 
     // Update is called once per frame

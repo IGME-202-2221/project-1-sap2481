@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Dreadnought : MonoBehaviour
 {
+    
+    public void ShipDestroyed()
+    {
+        SendMessageUpwards("FighterDown");
+    }
+    
     public void Shoot(bool altFire)
     {
         if (altFire == true)
@@ -20,11 +26,11 @@ public class Dreadnought : MonoBehaviour
     {
         if (altLaunch == true)
         {
-            Instantiate(enemyPrefab, new Vector3(transform.position.x - 2.5f, transform.position.y + 3, transform.position.z), transform.rotation);
+            Instantiate(enemyPrefab, new Vector3(transform.position.x - 2.5f, transform.position.y + 3, transform.position.z), transform.rotation, transform);
         }
         else
         {
-            Instantiate(enemyPrefab, new Vector3(transform.position.x - 2.5f, transform.position.y - 3, transform.position.z), transform.rotation);
+            Instantiate(enemyPrefab, new Vector3(transform.position.x - 2.5f, transform.position.y - 3, transform.position.z), transform.rotation, transform);
         }
     }
 
@@ -58,7 +64,6 @@ public class Dreadnought : MonoBehaviour
     public int launchLoop;
 
     public int laserCountdown;
-    public int laserLoop;
 
     bool altFire;
     bool altLaunch;
@@ -67,13 +72,11 @@ public class Dreadnought : MonoBehaviour
     void Start()
     {
         enemyPosition = transform.position;
-        frameCount = 1000; //NOTE: Build runs much slower than Unity gametest. When on Unity, frameCount is better at 1000. For the Build, set it to 25.
-        //This is until I can figure out a better timing method
+        frameCount = 25; //NOTE: Build runs much slower than Unity gametest. When on Unity, frameCount is better at 1000. For the Build, set it to 25.
         launchLoop = 0;
         altFire = false;
 
-        laserCountdown = 10000;
-        laserLoop = 50;
+        laserCountdown = 250; //Set this to 10000 for Unity & 250 for the Build (10x more than the frameCount value)
     }
 
     // Update is called once per frame
@@ -91,38 +94,32 @@ public class Dreadnought : MonoBehaviour
         //Draw vehicle at that position
         transform.position = enemyPosition;
 
-        //Shoot
-        frameCount--;
-        if (frameCount == 0)
+        if (Time.timeScale != 0)
         {
-            Shoot(altFire);
-            frameCount = 1000; //Once again, set this to 1000 on Unity and 25 for the build
-            altFire = !altFire;
-            launchLoop++;
-        }
+            //Shoot
+            frameCount--;
+            if (frameCount == 0)
+            {
+                Shoot(altFire);
+                frameCount = 25; //Once again, set this to 1000 on Unity and 25 for the build
+                altFire = !altFire;
+                launchLoop++;
+            }
 
-        //Launch
-        if (launchLoop == 8)
-        {
-            Launch(altLaunch);
-            launchLoop = 0;
-            altLaunch = !altLaunch;
-        }
+            //Launch
+            if (launchLoop == 8)
+            {
+                Launch(altLaunch);
+                launchLoop = 0;
+                altLaunch = !altLaunch;
+            }
 
-        //Laser
-        laserCountdown--;
-        if (laserCountdown <= 0)
-        {
-            if (laserLoop % 5 == 0)
+            //Laser
+            laserCountdown--;
+            if (laserCountdown == 0)
             {
                 Laser();
-            }
-            laserLoop--;
-
-            if (laserLoop == 0)
-            {
-                laserCountdown = 10000;
-                laserLoop = 50;
+                laserCountdown = 250; //10000 for Unity, 250 for Build
             }
         }
     }

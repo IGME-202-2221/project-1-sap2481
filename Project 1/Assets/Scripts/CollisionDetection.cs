@@ -5,35 +5,32 @@ using UnityEngine;
 public class CollisionDetection : MonoBehaviour
 {
     bool Collision(GameObject vehicle, GameObject obstacle)
-    {
+    {       
         bool isColliding;
-        if (vehicle.GetComponent<BoxCollider2D>().bounds.min.x < obstacle.GetComponent<BoxCollider2D>().bounds.max.x &&
-            vehicle.GetComponent<BoxCollider2D>().bounds.max.x > obstacle.GetComponent<BoxCollider2D>().bounds.min.x &&
-            vehicle.GetComponent<BoxCollider2D>().bounds.min.y < obstacle.GetComponent<BoxCollider2D>().bounds.max.y &&
-            vehicle.GetComponent<BoxCollider2D>().bounds.max.y > obstacle.GetComponent<BoxCollider2D>().bounds.min.y)
+
+        if (vehicle.GetComponent<SpriteRenderer>().bounds.min.x < obstacle.GetComponent<SpriteRenderer>().bounds.max.x &&
+            vehicle.GetComponent<SpriteRenderer>().bounds.max.x > obstacle.GetComponent<SpriteRenderer>().bounds.min.x &&
+            vehicle.GetComponent<SpriteRenderer>().bounds.min.y < obstacle.GetComponent<SpriteRenderer>().bounds.max.y &&
+            vehicle.GetComponent<SpriteRenderer>().bounds.max.y > obstacle.GetComponent<SpriteRenderer>().bounds.min.y)
         {
             isColliding = true;
-            vehicle.GetComponent<SpriteRenderer>().color = Color.red;
-            //NOTE: I know why the red coloration on collision for the dreadnought is broken. I just haven't been able to figure out how to fix it yet. Stay tuned.
-            if (vehicle.tag == "EnemyShip")
-            {
-                Destroy(vehicle);
-            }
+
             if (obstacle.tag == "EnemyBullet" || obstacle.tag == "PlayerBullet" || obstacle.tag == "EnemyShip")
             {
                 Destroy(obstacle);
-            }
-            else
-            {
-                obstacle.GetComponent<SpriteRenderer>().color = Color.red;
             }
         }
         else
         {
             isColliding = false;
-            vehicle.GetComponent<SpriteRenderer>().color = Color.white;
         }
+
         return isColliding;
+    }
+
+    public void FighterDown()
+    {
+        BroadcastMessage("ScoreUp", 100f);
     }
 
     GameObject player;
@@ -108,15 +105,17 @@ public class CollisionDetection : MonoBehaviour
         {
             if (Collision(player, enemyBulletList[i]))
             {
+                BroadcastMessage("PlayerDamage", 3.0f);
                 break;
             }
         }
-
+        
         //Check for Player Bullet Collisions
         for (int i = 0; i < playerBulletList.Count; i++)
         {
             if (Collision(dreadnought, playerBulletList[i]))
             {
+                BroadcastMessage("DreadnoughtDamage", 5f);
                 break;
             }
         }
@@ -126,6 +125,8 @@ public class CollisionDetection : MonoBehaviour
         {
             if (Collision(player, enemyShipList[i]))
             {
+                BroadcastMessage("PlayerDamage", 10f);
+                Destroy(enemyShipList[i]);
                 break;
             }
         }
@@ -137,13 +138,26 @@ public class CollisionDetection : MonoBehaviour
             {
                 if (Collision(enemyShipList[i], playerBulletList[j]))
                 {
+                    BroadcastMessage("EnemyDamage", 1f);
                     break;
                 }
             }
         }
 
+        //Check for Laser Collisions
+        for (int i = 0; i < laserList.Count; i++)
+        {
+            if (Collision(player, laserList[0]))
+            {
+                BroadcastMessage("PlayerDamage", 1f);
+            }
+        }
+
         //Check for Ship-To-Ship Collision
-        Collision(player, dreadnought);
+        if (Collision(player, dreadnought))
+        {
+            BroadcastMessage("PlayerDamage", 2f);
+        }
 
         //Remove Enemy Bullets If Outside the Screen
         for (int i = 0; i < enemyBulletList.Count; i++)
