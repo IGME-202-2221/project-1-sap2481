@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6149291860173717001}
   - component: {fileID: 3061483144301282958}
   - component: {fileID: -2672459811142499143}
-  - component: {fileID: -933532165340307405}
   m_Layer: 0
   m_Name: Enemy Fighter
   m_TagString: EnemyShip
@@ -102,29 +101,3 @@ MonoBehaviour:
   shipPosition: {x: 0, y: 0, z: 0}
   direction: {x: -1, y: 0, z: 0}
   velocity: {x: -1, y: 0, z: 0}
---- !u!61 &-933532165340307405
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8683076053352664796}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0.049999997, y: 0.07, z: 0.03, w: 0.44}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.92, y: 3.38}
-    newSize: {x: 3.92, y: 3.38}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 3.92, y: 3.38}
-  m_EdgeRadius: 0

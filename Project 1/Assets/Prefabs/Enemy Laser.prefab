@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 127037021014256281}
   - component: {fileID: 1359007796490234638}
   - component: {fileID: -4345056553069555106}
-  - component: {fileID: 7437003295796084545}
   m_Layer: 0
   m_Name: Enemy Laser
   m_TagString: Laser
@@ -102,29 +101,3 @@ MonoBehaviour:
   laserPosition: {x: 0, y: 0, z: 0}
   direction: {x: -1, y: 0, z: 0}
   velocity: {x: -1, y: 0, z: 0}
---- !u!61 &7437003295796084545
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3381169354304374926}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.71, y: 20.48}
-    newSize: {x: 0.61, y: 20.48}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.71, y: 20.48}
-  m_EdgeRadius: 0
