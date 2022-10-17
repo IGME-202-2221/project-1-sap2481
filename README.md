@@ -28,7 +28,7 @@ Dreadnought: A shoot-em-up game against one singular enemy vessel and its fleet:
     -   Right: D / Right Arrow
 -   Fire: Right Mouse Button
 
-## You Additions
+## Your Additions
 
 This game is different for me in that it will have one primary enemy with different abilities on different cooldowns, such as its normal bullets, its more powerful laser attack, and sending out smaller, weaker fighters to fight the player ship.
 
@@ -39,12 +39,13 @@ This game is different for me in that it will have one primary enemy with differ
 - Enemy Fighter: https://opengameart.org/content/spaceship-fighter
 - Dreadnought Laser: https://opengameart.org/content/laser-effect-sheet
 - Game Bullets: https://opengameart.org/content/sci-fi-space-simple-bullets
+- Space Background: https://opengameart.org/content/space-background-01
 
 ## Known Issues
 
-_List any errors, lack of error checking, or specific information that I need to know to run your program_
+- Laser Collision Error: Because the laser is a long projectile, there may be occasions where, despite the sprites not visually colliding, the laser projectile is simultaneously further up, down, left, and right of the fighter, causing the Collision method to activate.
 
 ### Requirements not completed
 
-_If you did not complete a project requirement, notate that here_
+N/A
 
